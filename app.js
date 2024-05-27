@@ -17,3 +17,10 @@
 const getNotes = require("./notes");
 
 console.log(getNotes());
+
+// importing node module
+
+// validating Email using validator node module
+const validator = require("validator");
+
+console.log(validator.isEmail("shivam@gmail.com"));
