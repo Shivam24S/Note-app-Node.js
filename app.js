@@ -12,15 +12,21 @@
 
 // fs.appendFileSync("notes.txt", ", hope you will enjoy learning node js");
 
-// importing file
+// importing file with classical js
 
-const getNotes = require("./notes");
+// const getNotes = require("./notes");
 
-console.log(getNotes());
+// console.log(getNotes());
 
 // importing node module
 
 // validating Email using validator node module
-const validator = require("validator");
+// const validator = require("validator");
 
-console.log(validator.isEmail("shivam@gmail.com"));
+// console.log(validator.isEmail("shivam@gmail.com"));
+
+// importing file with es 6 js
+
+import getNotes from "./notes.js";
+
+console.log(getNotes());

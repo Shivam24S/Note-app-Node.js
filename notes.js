@@ -1,5 +1,13 @@
-const getNotes = function note() {
-  return "your notes....";
-};
+// exporting for classical js
 
-module.exports = getNotes;
+// const getNotes = function note() {
+//   return "your notes....";
+// };
+
+// module.exports = getNotes;
+
+// exporting with es6 type
+
+export default function getNotes() {
+  return "your notes....";
+}
