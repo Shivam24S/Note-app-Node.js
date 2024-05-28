@@ -38,3 +38,13 @@ import chalk from "chalk";
 console.log(chalk.green("success"));
 
 console.log(chalk.green.bgGray("Success!"));
+
+// getting user input using process.argv[] and command line
+
+console.log("argv", process.argv[2]);
+
+if (process.argv[2] === "add") {
+  console.log("adding Note");
+} else if (process.argv[2] === "remove") {
+  console.log("removing Note");
+}
