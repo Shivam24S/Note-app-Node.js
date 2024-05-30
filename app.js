@@ -49,39 +49,42 @@
 //   console.log("removing Note");
 // }
 
-// yargs module
-
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
-yargs(hideBin(process.argv)).command({
-  command: "add",
-  describe: "adding Note",
-  handler: function () {
-    console.log("adding note ...");
-  },
-}).argv;
-
-yargs(hideBin(process.argv)).command({
-  command: "remove",
-  describe: "removing Note",
-  handler: function () {
-    console.log("removing note ...");
-  },
-}).argv;
-
-yargs(hideBin(process.argv)).command({
-  command: "list",
-  describe: "list note",
-  handler: function () {
-    console.log("listing notes ...");
-  },
-}).argv;
-
-yargs(hideBin(process.argv)).command({
-  command: "read",
-  describe: "read note",
-  handler: function () {
-    console.log("reading note ...");
-  },
-}).argv;
+yargs(hideBin(process.argv))
+  .command({
+    command: "add",
+    describe: "adding Note",
+    builder: {
+      title: {
+        describe: "first note",
+        demandOption: true,
+        type: "string",
+      },
+    },
+    handler: function (argv) {
+      console.log("adding note " + argv.title);
+    },
+  })
+  .command({
+    command: "remove",
+    describe: "removing Note",
+    handler: function () {
+      console.log("removing note ...");
+    },
+  })
+  .command({
+    command: "list",
+    describe: "list note",
+    handler: function () {
+      console.log("listing notes ...");
+    },
+  })
+  .command({
+    command: "read",
+    describe: "read note",
+    handler: function () {
+      console.log("reading note ...");
+    },
+  }).argv;
