@@ -49,42 +49,72 @@
 //   console.log("removing Note");
 // }
 
-import yargs from "yargs";
-import { hideBin } from "yargs/helpers";
+// yargv second part
 
-yargs(hideBin(process.argv))
-  .command({
-    command: "add",
-    describe: "adding Note",
-    builder: {
-      title: {
-        describe: "first note",
-        demandOption: true,
-        type: "string",
-      },
-    },
-    handler: function (argv) {
-      console.log("adding note " + argv.title);
-    },
-  })
-  .command({
-    command: "remove",
-    describe: "removing Note",
-    handler: function () {
-      console.log("removing note ...");
-    },
-  })
-  .command({
-    command: "list",
-    describe: "list note",
-    handler: function () {
-      console.log("listing notes ...");
-    },
-  })
-  .command({
-    command: "read",
-    describe: "read note",
-    handler: function () {
-      console.log("reading note ...");
-    },
-  }).argv;
+// import yargs from "yargs";
+// import { hideBin } from "yargs/helpers";
+
+// yargs(hideBin(process.argv))
+//   .command({
+//     command: "add",
+//     describe: "adding Note",
+//     builder: {
+//       title: {
+//         describe: "first note",
+//         demandOption: true,
+//         type: "string",
+//       },
+//     },
+//     handler: function (argv) {
+//       console.log("adding note " + argv.title);
+//     },
+//   })
+//   .command({
+//     command: "remove",
+//     describe: "removing Note",
+//     handler: function () {
+//       console.log("removing note ...");
+//     },
+//   })
+//   .command({
+//     command: "list",
+//     describe: "list note",
+//     handler: function () {
+//       console.log("listing notes ...");
+//     },
+//   })
+//   .command({
+//     command: "read",
+//     describe: "read note",
+//     handler: function () {
+//       console.log("reading note ...");
+//     },
+//   }).argv;
+
+// storing data json
+
+import fs from "fs";
+
+const data = fs.readFileSync("1-json.json");
+
+const dataBuffer = data;
+
+console.log("data Buffer", dataBuffer);
+
+// now converting data into string
+
+const output = dataBuffer.toString();
+
+console.log("output", output);
+
+// now parsing object
+
+const result = JSON.parse(output);
+
+console.log("result", result);
+
+// now overwriting object
+
+console.log("overwriting  result", (result.name = "shiv"));
+
+console.log("overWritten result", result);
