@@ -118,3 +118,12 @@ console.log("result", result);
 console.log("overwriting  result", (result.name = "shiv"));
 
 console.log("overWritten result", result);
+
+// overwriting in another file
+
+// const userData = JSON.stringify(result);
+
+result.name = "Rock";
+result.car = "G_Wagon";
+
+fs.writeFileSync("1-json.json", JSON.stringify(result));
