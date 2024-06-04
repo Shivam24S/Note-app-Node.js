@@ -93,37 +93,63 @@
 
 // storing data json
 
-import fs from "fs";
+// import fs from "fs";
 
-const data = fs.readFileSync("1-json.json");
+// const data = fs.readFileSync("1-json.json");
 
-const dataBuffer = data;
+// const dataBuffer = data;
 
-console.log("data Buffer", dataBuffer);
+// console.log("data Buffer", dataBuffer);
 
-// now converting data into string
+// // now converting data into string
 
-const output = dataBuffer.toString();
+// const output = dataBuffer.toString();
 
-console.log("output", output);
+// console.log("output", output);
 
-// now parsing object
+// // now parsing object
 
-const result = JSON.parse(output);
+// const result = JSON.parse(output);
 
-console.log("result", result);
+// console.log("result", result);
 
-// now overwriting object
+// // now overwriting object
 
-console.log("overwriting  result", (result.name = "shiv"));
+// console.log("overwriting  result", (result.name = "shiv"));
 
-console.log("overWritten result", result);
+// console.log("overWritten result", result);
 
-// overwriting in another file
+// // overwriting in another file
 
-// const userData = JSON.stringify(result);
+// // const userData = JSON.stringify(result);
 
-result.name = "Rock";
-result.car = "G_Wagon";
+// result.name = "Rock";
+// result.car = "G_Wagon";
 
-fs.writeFileSync("1-json.json", JSON.stringify(result));
+// fs.writeFileSync("1-json.json", JSON.stringify(result));
+
+// adding notes
+
+import Yargs from "yargs";
+import { hideBin } from "yargs/helpers";
+import { addNotes } from "./notes.js";
+
+Yargs(hideBin(process.argv)).command({
+  command: "add",
+  describe: "add notes",
+  builder: {
+    title: {
+      describe: "add note",
+      demandOptions: true,
+      type: "string",
+    },
+    body: {
+      describe: "note body",
+      demandOptions: true,
+      type: "string",
+    },
+  },
+  handler(argv) {
+    addNotes(argv.title, argv.body);
+  },
+}).argv;
