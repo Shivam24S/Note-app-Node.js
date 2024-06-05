@@ -13,6 +13,7 @@
 // }
 
 import fs from "fs";
+import chalk from "chalk";
 
 export const addNotes = function (title, body) {
   const notes = loadNotes();
@@ -46,5 +47,22 @@ export const loadNotes = function () {
     return JSON.parse(dataJSON);
   } catch (error) {
     return [];
+  }
+};
+
+// removing notes
+
+export const removeNotes = function (title, body) {
+  const notes = loadNotes();
+
+  const updatedData = notes.filter(
+    (note) => note.title !== title || note.body !== body
+  );
+
+  if (updatedData.length === notes.length) {
+    console.log(chalk.red.inverse("No matching notes found for removal."));
+  } else {
+    saveNotes(updatedData);
+    console.log(chalk.green.inverse("notes removed successfully"));
   }
 };
