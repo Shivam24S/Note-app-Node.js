@@ -121,3 +121,13 @@ export const removeNotes = (title, body) => {
     console.log(chalk.green.inverse("Notes removed successfully"));
   }
 };
+
+export const listNotes = () => {
+  const notes = loadNotes();
+
+  console.log(chalk.inverse("your notes"));
+
+  notes.forEach((note) => {
+    console.log(note.title + " " + note.body);
+  });
+};
