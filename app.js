@@ -132,42 +132,44 @@
 
 import Yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import { addNotes } from "./notes.js";
-import { removeNotes } from "./notes.js";
+import { addNotes, removeNotes } from "./notes.js";
 
-Yargs(hideBin(process.argv)).command({
-  command: "add",
-  describe: "add notes",
-  builder: {
-    title: {
-      describe: "add note",
-      demandOptions: true,
-      type: "string",
+Yargs(hideBin(process.argv))
+  .command({
+    command: "add",
+    describe: "Add a new note",
+    builder: {
+      title: {
+        describe: "Note title",
+        demandOption: true,
+        type: "string",
+      },
+      body: {
+        describe: "Note body",
+        demandOption: true,
+        type: "string",
+      },
     },
-    body: {
-      describe: "note body",
-      demandOptions: true,
-      type: "string",
+    handler(argv) {
+      addNotes(argv.title, argv.body);
     },
-  },
-  handler(argv) {
-    addNotes(argv.title, argv.body);
-  },
-  command: "remove",
-  describe: "remove notes",
-  builder: {
-    title: {
-      describe: "remove note title",
-      demandOptions: true,
-      type: "string",
+  })
+  .command({
+    command: "remove",
+    describe: "Remove a note",
+    builder: {
+      title: {
+        describe: "Note title",
+        demandOption: true,
+        type: "string",
+      },
+      body: {
+        describe: "Note body",
+        demandOption: true,
+        type: "string",
+      },
     },
-  },
-  body: {
-    describe: "remove note body",
-    demandOptions: true,
-    type: "string",
-  },
-  handler(argv) {
-    removeNotes(argv.title, argv.body);
-  },
-}).argv;
+    handler(argv) {
+      removeNotes(argv.title, argv.body);
+    },
+  }).argv;
