@@ -75,9 +75,9 @@ import chalk from "chalk";
 export const addNotes = (title, body) => {
   const notes = loadNotes();
 
-  const duplicateTitle = notes.filter((item) => item.title === title);
+  const duplicateTitle = notes.find((item) => item.title === title);
 
-  if (duplicateTitle.length === 0) {
+  if (!duplicateTitle) {
     notes.push({
       title: title,
       body: body,
@@ -130,4 +130,17 @@ export const listNotes = () => {
   notes.forEach((note) => {
     console.log(note.title + " " + note.body);
   });
+};
+
+export const readNotes = (title, body) => {
+  const notes = loadNotes();
+
+  const note = notes.find((note) => note.title === title || note.body === body);
+
+  if (note) {
+    console.log(chalk.green.inverse(note.title));
+    console.log(chalk.inverse(note.body));
+  } else {
+    console.log(chalk.red.inverse("note not found"));
+  }
 };
